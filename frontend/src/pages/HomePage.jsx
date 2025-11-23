@@ -55,7 +55,7 @@ const HomePage = () => {
   const fetchHomeData = async () => {
     try {
       // const res = await axios.get("http://localhost:5001/api/vendor/:vendorId");
-      const res = await axios.get("http://localhost:5001/api/review/userdashboard/stats");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/review/userdashboard/stats`);
 
       setStats({
         users: res.data.totalUsers,

@@ -14,7 +14,8 @@ const AIAgentPage = () => {
     setInput("");
 
     try {
-      const res = await axios.post("http://localhost:5001/api/ai/ask", {
+      // const res = await axios.post("http://localhost:5001/api/ai/ask", {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ai/ask`, {
         message: input,
       });
 

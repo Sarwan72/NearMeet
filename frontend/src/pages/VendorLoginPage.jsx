@@ -27,7 +27,10 @@ const handleLogin = async (e) => {
   e.preventDefault();
   try {
     // const res = await fetch("/api/vendors/login", {
-    const res = await fetch("http://localhost:5001/api/vendors/login", {
+    // const res = await fetch("http://localhost:5001/api/vendors/login", const res = await fetch(
+ const res = await fetch(
+  `${import.meta.env.VITE_BACKEND_URL}/api/vendors/login`,
+      {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

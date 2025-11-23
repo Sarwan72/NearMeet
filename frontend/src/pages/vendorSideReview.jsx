@@ -17,9 +17,13 @@ const vendor = JSON.parse(localStorage.getItem("vendor"));
 console.log("Vendor Loaded:", vendor);
     async function fetchReviews() {
       try {
+        // const res = await axios.get(
+        //   `http://localhost:5001/api/review/vendor/${vendorId}`
+        // );
         const res = await axios.get(
-          `http://localhost:5001/api/review/vendor/${vendorId}`
-        );
+  `${import.meta.env.VITE_BACKEND_URL}/api/review/vendor/${vendorId}`
+);
+
 
         setReviews(res.data.reviews || []);
 

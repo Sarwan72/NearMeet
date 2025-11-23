@@ -66,7 +66,7 @@ useEffect(() => {
 
   // ✅ Setup socket for real-time updates
   useEffect(() => {
-    const socket = io("http://localhost:5001", {
+    const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
        transports: ["websocket"] ,
            reconnection: true,        // retry if fails
     reconnectionAttempts: 5,   // up to 5 retries
