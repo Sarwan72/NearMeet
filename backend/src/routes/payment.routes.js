@@ -42,8 +42,11 @@ router.post("/checkout", async (req, res) => {
 
       mode: "payment",
 
-     success_url: `http://localhost:5173/payment?status=success&bookingId=${bookingId}`,
-cancel_url:  `http://localhost:5173/payment?status=failed`,
+//      success_url: `http://localhost:5173/payment?status=success&bookingId=${bookingId}`,
+// cancel_url:  `http://localhost:5173/payment?status=failed`,
+
+     success_url: `https://near-meet.vercel.app/payment?status=success&bookingId=${bookingId}`,
+cancel_url:  `https://near-meet.vercel.app/payment?status=failed`,
 
     });
 
