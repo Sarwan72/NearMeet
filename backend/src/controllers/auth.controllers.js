@@ -58,6 +58,8 @@ export async function signup(req, res) {
       sameSite: "none",
       // secure: process.env.NODE_ENV === "production",
       secure: true,
+      path: "/",
+
     });
 
     res.status(201).json({ success: true, user: newUser });
@@ -94,6 +96,8 @@ export async function login(req, res) {
       // secure: process.env.NODE_ENV === "production",
       secure: true,
       sameSite: "none",
+      path: "/",
+
     });
 
     res.status(200).json({ success: true, user });

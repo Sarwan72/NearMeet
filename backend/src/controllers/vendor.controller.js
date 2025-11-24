@@ -63,6 +63,8 @@ export const signupVendor = async (req, res) => {
       // secure: false, 
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "none",
+      path: "/",
+
       // sameSite: "lax",
     });
 
@@ -140,6 +142,8 @@ export const loginVendor = async (req, res) => {
       secure: true, // for production (HTTPS)
        maxAge: 7 * 24 * 60 * 60 * 1000,
       sameSite: "none",
+      path: "/",
+
     });
 
     res.status(200).json({
@@ -173,6 +177,7 @@ export const logoutVendor = async (req, res) => {
       httpOnly: true,
       secure: true, // set true in production (HTTPS)
       sameSite: "none",
+      path: "/",
     });
 
     res.status(200).json({ message: "Vendor logged out successfully" });
