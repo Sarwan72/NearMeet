@@ -59,9 +59,11 @@ export const signupVendor = async (req, res) => {
     // Set HTTP-only cookie
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: false, // for localhost
+      secure: true, // for production (HTTPS)
+      // secure: false, 
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: "lax",
+      sameSite: "none",
+      // sameSite: "lax",
     });
 
     res.status(201).json({
@@ -98,8 +100,10 @@ export const loginVendor = async (req, res) => {
     const { ownerEmail, password } = req.body;
     res.clearCookie("jwt", {
       httpOnly: true,
-      secure: false, // for localhost
-      sameSite: "lax",
+      // secure: false, // for localhost
+      // sameSite: "lax",
+      secure: true,
+      sameSite: "none",
     });
 
     // Find vendor and explicitly select the password
@@ -132,10 +136,10 @@ export const loginVendor = async (req, res) => {
     // Set HTTP-only cookie
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: false, // for localhost
-      // secure: true, // for localhost
+      // secure: false, // for localhost
+      secure: true, // for production (HTTPS)
        maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "lax",
+      sameSite: "none",
     });
 
     res.status(200).json({
@@ -167,8 +171,8 @@ export const logoutVendor = async (req, res) => {
     // Clear the auth cookie
     res.clearCookie("jwt", {
       httpOnly: true,
-      secure: false, // set true in production (HTTPS)
-      sameSite: "lax",
+      secure: true, // set true in production (HTTPS)
+      sameSite: "none",
     });
 
     res.status(200).json({ message: "Vendor logged out successfully" });
