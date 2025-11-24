@@ -169,7 +169,13 @@ export const google = async (req, res, next) => {
 
 
 export function logout(req, res) {
-  res.clearCookie("jwt");
+  // res.clearCookie("jwt");
+  res.clearCookie("jwt", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/",  // MUST match login cookie
+});
   res.status(200).json({ success: true, message: "Logout successful" });
 }
 

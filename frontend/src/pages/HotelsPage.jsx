@@ -5,6 +5,7 @@ import { Star,
   StarHalf,
   StarOff, } from "lucide-react";
 import axios from "axios";
+import { axiosInstance } from "../lib/axios";
 import { io } from "socket.io-client";
 import { Link } from "react-router";
 
@@ -25,8 +26,10 @@ const HotelsPage = () => {
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URL}`;
-  axios.defaults.withCredentials = true;
+  // axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URL}`; not for production 
+  // axios.defaults.withCredentials = true; not for production 
+  axiosInstance.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URL}`;
+  axiosInstance.defaults.withCredentials = true;
 
   // ------------------------------
   // LOAD ALL VENDORS
@@ -34,7 +37,9 @@ const HotelsPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("/api/vendors/hotels");
+        // const res = await axios.get("/api/vendors/hotels");
+        // const res = await axios.get("/api/vendors/hotels");
+        const res = await axiosInstance.get("/vendors/hotels");
         setVendors(res.data || []);
       } catch (err) {
         console.error("Error fetching vendors:", err);
@@ -81,7 +86,7 @@ const HotelsPage = () => {
 
     (async () => {
       try {
-        const res = await axios.get(`/api/bookings/user/${user._id}`);
+        const res = await axiosInstance.get(`/api/bookings/user/${user._id}`);
         const bookings = res.data || [];
         setUserBookings(bookings);
 
@@ -110,7 +115,7 @@ const HotelsPage = () => {
 
     if (current?.status === "booked") {
       try {
-        const res = await axios.post("/api/payments/checkout", {
+        const res = await axiosInstance.post("/api/payments/checkout", {
           bookingId: current.bookingId,
           vendorId: vendor._id,
           amount: vendor.price,
@@ -126,7 +131,8 @@ const HotelsPage = () => {
     // Book Now
     if (!current) {
       try {
-        const res = await axios.post("/api/bookings/book", {
+        const res = await axiosInstance.post("/api/bookings/book", {
+        // const res = await axios.post("/api/bookings/book", {
           userId: user._id,
           vendorId: vendor._id,
         });
@@ -161,7 +167,7 @@ const HotelsPage = () => {
     if (!reviewRating) return alert("Please give a rating");
 
     try {
-      await axios.post(`/api/review/vendor/${selectedVendorForReview._id}`, {
+      await axiosInstance.post(`/api/review/vendor/${selectedVendorForReview._id}`, {
         userId: user._id,
         rating: reviewRating,
         comment: reviewComment,
@@ -169,7 +175,7 @@ const HotelsPage = () => {
 
       alert("Review submitted!");
 
-      const res = await axios.get("/api/vendors/hotels");
+      const res = await axiosInstance.get("/api/vendors/hotels");
       setVendors(res.data);
 
       setOpenReviewModal(false);
