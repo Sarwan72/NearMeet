@@ -31,15 +31,18 @@ const HotelsPage = () => {
   axiosInstance.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URL}`;
   axiosInstance.defaults.withCredentials = true;
 
-  // ------------------------------
-  // LOAD ALL VENDORS
-  // ------------------------------
+// when user changes, reset all booking-related state
+useEffect(() => {
+  setBookingStatus({});
+  setUserBookings([]);
+}, [user?._id]);
+
   useEffect(() => {
     (async () => {
       try {
         // const res = await axios.get("/api/vendors/hotels");
         // const res = await axios.get("/api/vendors/hotels");
-        const res = await axiosInstance.get("/vendors/hotels");
+        const res = await axiosInstance.get("/api/vendors/hotels");
         setVendors(res.data || []);
       } catch (err) {
         console.error("Error fetching vendors:", err);
