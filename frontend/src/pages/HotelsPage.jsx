@@ -257,33 +257,7 @@ useEffect(() => {
                     {vendor.hotelName}
                   </h3>
 
-                  {/* ⭐ STAR RATING */}
-                  {/* <div className="flex items-center gap-1 mt-1">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <Star
-                        key={num}
-                        size={20}
-                        className={
-                          num <= Math.round(vendor.averageRating)
-                            ? "text-yellow-500 fill-yellow-500"
-                            : "text-gray-300"
-                        }
-                      />
-                    ))}
-
-                    <span className="font-semibold ml-1">
-                      {vendor.averageRating?.toFixed(1) || "0.0"}
-                    </span>
-                    <span className="text-sm text-gray-500">
-                      ({vendor.totalReviews || 0} reviews)
-                    </span>
-                    <Link
-                      to={`/vendor/${vendor._id}/reviews`}
-                      className="text-blue-600 underline text-sm"
-                    >
-                      View Reviews →
-                    </Link>
-                  </div> */}
+              
                    <div className="flex items-center gap-1 mt-1">
                                         {[1, 2, 3, 4, 5].map((star) => {
                                           const rating = vendor.averageRating || 0;

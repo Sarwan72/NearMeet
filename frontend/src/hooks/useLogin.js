@@ -17,7 +17,7 @@ const useLogin = () => {
     onSuccess: (data) => {
       // Save user in localStorage
       localStorage.setItem("user", JSON.stringify(data.user));
-
+window.location.reload();
       // Invalidate cached auth queries
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
 

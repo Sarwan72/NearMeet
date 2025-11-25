@@ -9,14 +9,16 @@
 // });
 
 
-
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL
-  ? `${import.meta.env.VITE_BACKEND_URL}/api`
-  : "http://localhost:5001/api";
+const BACKEND = import.meta.env.VITE_BACKEND_URL;
+
+// Example: VITE_BACKEND_URL = https://nearmeet2.onrender.com
 
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: BACKEND
+    ? `${BACKEND}/api`   // → https://nearmeet2.onrender.com/api
+    : "http://localhost:5001/api",
   withCredentials: true,
 });
+
