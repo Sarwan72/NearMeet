@@ -3,6 +3,8 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { axiosInstance } from "../lib/axios";
+
 const PaymentPage = () => {
   const [params] = useSearchParams();
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const PaymentPage = () => {
       if (status !== "success" || !bookingId) return;
 
       try {
-        await axios.post(`/api/bookings/${bookingId}/pay`);
+        await axiosInstance.post(`/bookings/${bookingId}/pay`);
         setLoading(false);
 
         setTimeout(() => navigate("/hotels"), 2000);
