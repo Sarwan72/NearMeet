@@ -50,7 +50,7 @@ const loadBookings = useCallback(async () => {
   try {
     setLoading(true);
     console.log("📤 Fetching bookings for vendor:", vendorId);
-    const { data } = await axiosInstance.get(`/api/bookings/vendor/${vendorId}`);
+    const { data } = await axiosInstance.get(`/bookings/vendor/${vendorId}`);
     console.log("📦 Vendor bookings fetched:", data);
     setBookings(data);
   } catch (err) {
@@ -95,7 +95,7 @@ useEffect(() => {
 
   const handleAccept = async (id) => {
     try {
-      await axiosInstance.post(`/api/bookings/requests/${id}/accept`);
+      await axiosInstance.post(`/bookings/requests/${id}/accept`);
       toast.success("✅ Booking confirmed");
       setBookings((prev) =>
         prev.map((b) => (b._id === id ? { ...b, status: "booked" } : b))
@@ -108,7 +108,7 @@ useEffect(() => {
 
   const handleReject = async (id) => {
     try {
-      await axiosInstance.post(`/api/bookings/requests/${id}/reject`);
+      await axiosInstance.post(`/bookings/requests/${id}/reject`);
       toast("❌ Booking rejected", { icon: "🚫" });
       setBookings((prev) =>
         prev.map((b) => (b._id === id ? { ...b, status: "rejected" } : b))
