@@ -19,7 +19,7 @@ const PaymentPage = () => {
       if (status !== "success" || !bookingId) return;
 
       try {
-        await axiosInstance.post(`api/bookings/${bookingId}/pay`);
+        await axiosInstance.post(`/api/bookings/${bookingId}/pay`);
         setLoading(false);
 
         setTimeout(() => navigate("/hotels"), 2000);
